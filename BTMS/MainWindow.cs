@@ -20,27 +20,30 @@ namespace BTMS
         EmployeeDAO eDAO = new EmployeeDAO();
         AccountDAO aDAO = new AccountDAO();
         TransactionDAO tDAO = new TransactionDAO();
+       
 
-        public MainWindow()
+    public MainWindow()
         {
             InitializeComponent();
             txtUser.Text = Session.Username;
+            if (Session.UserType != "Admin")
+            {Tabs.TabPages.Remove(ManageUser);}
+       
         }
         private void userProfile()
         {
             eDAO.searchUser(txtUser.Text);
             txtUserEmpName.Text = eDAO.emp.Name;
-            txtUserEmpDesignation.Text = eDAO.emp.Designation;
             txtUserEmpEmail.Text = eDAO.emp.Email;
         }
         private void clearUser()
         {
             txtEmpID.Clear();
             txtEmpName.Clear();
-            txtEmpDesignation.Clear();
-            txtEmail.Clear();
+            txtEmpEmail.Clear();
             txtEmpUsername.Clear();
             txtEmpPassword.Clear();
+            cbxUserType.ResetText();
         }
         private void clearCustomer()
         {
@@ -73,7 +76,7 @@ namespace BTMS
             {
                 eDAO.searchUser(txtEmpID.Text);
                 txtEmpName.Text = eDAO.emp.Name;
-                txtEmpDesignation.Text = eDAO.emp.Designation;
+                cbxUserType.Text = eDAO.emp.Designation;
                 txtEmpEmail.Text = eDAO.emp.Email;
                 txtEmpUsername.Text = eDAO.emp.Username;
                 txtEmpPassword.Text = eDAO.emp.Password;
@@ -88,7 +91,7 @@ namespace BTMS
 
         private void btnCreateEmp_Click(object sender, EventArgs e)
         {
-            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, txtEmpDesignation.Text,
+            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
             txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
             eDAO.createUser(obj);
             clearUser();
@@ -96,7 +99,7 @@ namespace BTMS
 
         private void btnUpdateEmp_Click(object sender, EventArgs e)
         {
-            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, txtEmpDesignation.Text,
+            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
             txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
             eDAO.updateUser(obj);
             clearUser();
@@ -162,9 +165,20 @@ namespace BTMS
                 pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
                 var Signature = ms2.ToArray();
 
-                Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
-                cDAO.createCustomer(obj);
+                cDAO.getCustomerNIC(txtID.Text);
+                string custID = cDAO.customerNIC.ToString();
+                if (custID != txtID.Text)
+                {
+                    Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
+                    cDAO.createCustomer(obj);
+                }
+                else
+                {
+                    MessageBox.Show("Customer Record Already Exists!!");
+                    clearCustomer();
+                }
             }
+                
            
             catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!");}
             
@@ -291,7 +305,7 @@ namespace BTMS
 
         private void btnCloseAccount_Click(object sender, EventArgs e)
         {
-            aDAO.closeAccount(Convert.ToInt16(txtAccountNumber.Text));
+            aDAO.closeAccount(Convert.ToInt32(txtAccountNumber.Text));
         }
 
         private void dgvAccount_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -443,10 +457,12 @@ namespace BTMS
         private void tabPage6_Click(object sender, EventArgs e)
         {
             DataTable dt = new DataTable();
-            SqlDataAdapter sda = new SqlDataAdapter("select * from Transactions", con);
+            SqlDataAdapter sda = new SqlDataAdapter("select * from Transactions where Teller ='"+txtUser.Text+"'", con);
             sda.Fill(dt);
             dgvTransHistory.DataSource = dt;
         }
+
+      
     }
 }
 

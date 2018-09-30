@@ -31,10 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.txtUser = new System.Windows.Forms.TextBox();
             this.btnLogout = new System.Windows.Forms.Button();
-            this.btnExit = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.ManageUser = new System.Windows.Forms.TabPage();
+            this.cbxUserType = new System.Windows.Forms.ComboBox();
             this.btnEmpClear = new System.Windows.Forms.Button();
             this.btnDeleteEmp = new System.Windows.Forms.Button();
             this.btnUpdateEmp = new System.Windows.Forms.Button();
@@ -43,7 +42,6 @@
             this.txtEmpPassword = new System.Windows.Forms.TextBox();
             this.txtEmpUsername = new System.Windows.Forms.TextBox();
             this.txtEmpEmail = new System.Windows.Forms.TextBox();
-            this.txtEmpDesignation = new System.Windows.Forms.TextBox();
             this.txtEmpName = new System.Windows.Forms.TextBox();
             this.txtEmpID = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
@@ -56,16 +54,22 @@
             this.txtNewPassword = new System.Windows.Forms.TextBox();
             this.txtCurrentPassword = new System.Windows.Forms.TextBox();
             this.txtUserEmpEmail = new System.Windows.Forms.TextBox();
-            this.txtUserEmpDesignation = new System.Windows.Forms.TextBox();
             this.txtUserEmpName = new System.Windows.Forms.TextBox();
             this.btnChangePassword = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
-            this.label22 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
-            this.tabPage6 = new System.Windows.Forms.TabPage();
-            this.dgvTransHistory = new System.Windows.Forms.DataGridView();
             this.TransactionHistory = new System.Windows.Forms.TabPage();
+            this.dgvTransHistory = new System.Windows.Forms.DataGridView();
+            this.tIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tellerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.cBCDataSet = new BTMS.CBCDataSet();
+            this.FundTransfer = new System.Windows.Forms.TabPage();
             this.label44 = new System.Windows.Forms.Label();
             this.txtFdToAccBalance = new System.Windows.Forms.TextBox();
             this.txtFdToAccName = new System.Windows.Forms.TextBox();
@@ -117,6 +121,12 @@
             this.btnAccClear = new System.Windows.Forms.Button();
             this.btnCloseAccount = new System.Windows.Forms.Button();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
+            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dateOpenedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnPrintMandate = new System.Windows.Forms.Button();
             this.btnOpenAccount = new System.Windows.Forms.Button();
             this.btnAccSearch = new System.Windows.Forms.Button();
@@ -152,54 +162,40 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.FundsTransfer = new System.Windows.Forms.TabControl();
-            this.numberDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.customerNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.balanceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateOpenedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cBCDataSet = new BTMS.CBCDataSet();
-            this.tIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.accountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.amountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.descriptionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tellerDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transactionsBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.Tabs = new System.Windows.Forms.TabControl();
             this.cBCDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.transactionsTableAdapter = new BTMS.CBCDataSetTableAdapters.TransactionsTableAdapter();
             this.accountTableAdapter = new BTMS.CBCDataSetTableAdapters.AccountTableAdapter();
             this.ManageUser.SuspendLayout();
             this.UserProfile.SuspendLayout();
-            this.tabPage6.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransHistory)).BeginInit();
             this.TransactionHistory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cBCDataSet)).BeginInit();
+            this.FundTransfer.SuspendLayout();
             this.Withdrawal.SuspendLayout();
             this.Deposit.SuspendLayout();
             this.ManageAccount.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
             this.ManageCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSignature)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhotograph)).BeginInit();
-            this.FundsTransfer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cBCDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).BeginInit();
+            this.Tabs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.cBCDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // txtUser
             // 
             this.txtUser.Enabled = false;
-            this.txtUser.Location = new System.Drawing.Point(546, 8);
+            this.txtUser.Location = new System.Drawing.Point(642, 8);
             this.txtUser.Name = "txtUser";
             this.txtUser.Size = new System.Drawing.Size(65, 20);
             this.txtUser.TabIndex = 0;
             // 
             // btnLogout
             // 
-            this.btnLogout.Location = new System.Drawing.Point(617, 8);
+            this.btnLogout.Location = new System.Drawing.Point(713, 6);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(75, 23);
             this.btnLogout.TabIndex = 1;
@@ -207,29 +203,10 @@
             this.btnLogout.UseVisualStyleBackColor = true;
             this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
-            // btnExit
-            // 
-            this.btnExit.Location = new System.Drawing.Point(698, 8);
-            this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(75, 23);
-            this.btnExit.TabIndex = 2;
-            this.btnExit.Text = "Exit";
-            this.btnExit.UseVisualStyleBackColor = true;
-            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(28, 13);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(211, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "CBC Bank Transaction Managment System";
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(506, 12);
+            this.label2.Location = new System.Drawing.Point(599, 11);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
             this.label2.TabIndex = 5;
@@ -237,6 +214,7 @@
             // 
             // ManageUser
             // 
+            this.ManageUser.Controls.Add(this.cbxUserType);
             this.ManageUser.Controls.Add(this.btnEmpClear);
             this.ManageUser.Controls.Add(this.btnDeleteEmp);
             this.ManageUser.Controls.Add(this.btnUpdateEmp);
@@ -245,7 +223,6 @@
             this.ManageUser.Controls.Add(this.txtEmpPassword);
             this.ManageUser.Controls.Add(this.txtEmpUsername);
             this.ManageUser.Controls.Add(this.txtEmpEmail);
-            this.ManageUser.Controls.Add(this.txtEmpDesignation);
             this.ManageUser.Controls.Add(this.txtEmpName);
             this.ManageUser.Controls.Add(this.txtEmpID);
             this.ManageUser.Controls.Add(this.label18);
@@ -262,9 +239,20 @@
             this.ManageUser.Text = "Manage User";
             this.ManageUser.UseVisualStyleBackColor = true;
             // 
+            // cbxUserType
+            // 
+            this.cbxUserType.FormattingEnabled = true;
+            this.cbxUserType.Items.AddRange(new object[] {
+            "Teller",
+            "Admin"});
+            this.cbxUserType.Location = new System.Drawing.Point(184, 293);
+            this.cbxUserType.Name = "cbxUserType";
+            this.cbxUserType.Size = new System.Drawing.Size(121, 21);
+            this.cbxUserType.TabIndex = 17;
+            // 
             // btnEmpClear
             // 
-            this.btnEmpClear.Location = new System.Drawing.Point(491, 36);
+            this.btnEmpClear.Location = new System.Drawing.Point(459, 39);
             this.btnEmpClear.Name = "btnEmpClear";
             this.btnEmpClear.Size = new System.Drawing.Size(75, 23);
             this.btnEmpClear.TabIndex = 16;
@@ -274,7 +262,7 @@
             // 
             // btnDeleteEmp
             // 
-            this.btnDeleteEmp.Location = new System.Drawing.Point(599, 296);
+            this.btnDeleteEmp.Location = new System.Drawing.Point(516, 275);
             this.btnDeleteEmp.Name = "btnDeleteEmp";
             this.btnDeleteEmp.Size = new System.Drawing.Size(75, 23);
             this.btnDeleteEmp.TabIndex = 15;
@@ -284,7 +272,7 @@
             // 
             // btnUpdateEmp
             // 
-            this.btnUpdateEmp.Location = new System.Drawing.Point(599, 236);
+            this.btnUpdateEmp.Location = new System.Drawing.Point(516, 221);
             this.btnUpdateEmp.Name = "btnUpdateEmp";
             this.btnUpdateEmp.Size = new System.Drawing.Size(75, 23);
             this.btnUpdateEmp.TabIndex = 14;
@@ -294,7 +282,7 @@
             // 
             // btnCreateEmp
             // 
-            this.btnCreateEmp.Location = new System.Drawing.Point(599, 175);
+            this.btnCreateEmp.Location = new System.Drawing.Point(516, 169);
             this.btnCreateEmp.Name = "btnCreateEmp";
             this.btnCreateEmp.Size = new System.Drawing.Size(75, 23);
             this.btnCreateEmp.TabIndex = 13;
@@ -304,17 +292,17 @@
             // 
             // btnSearchEmp
             // 
-            this.btnSearchEmp.Location = new System.Drawing.Point(347, 36);
+            this.btnSearchEmp.Location = new System.Drawing.Point(319, 38);
             this.btnSearchEmp.Name = "btnSearchEmp";
             this.btnSearchEmp.Size = new System.Drawing.Size(116, 23);
             this.btnSearchEmp.TabIndex = 12;
-            this.btnSearchEmp.Text = "Search Employee";
+            this.btnSearchEmp.Text = "Search User";
             this.btnSearchEmp.UseVisualStyleBackColor = true;
             this.btnSearchEmp.Click += new System.EventHandler(this.btnSearchEmp_Click);
             // 
             // txtEmpPassword
             // 
-            this.txtEmpPassword.Location = new System.Drawing.Point(228, 312);
+            this.txtEmpPassword.Location = new System.Drawing.Point(184, 238);
             this.txtEmpPassword.Name = "txtEmpPassword";
             this.txtEmpPassword.PasswordChar = 'x';
             this.txtEmpPassword.Size = new System.Drawing.Size(100, 20);
@@ -323,35 +311,28 @@
             // txtEmpUsername
             // 
             this.txtEmpUsername.Enabled = false;
-            this.txtEmpUsername.Location = new System.Drawing.Point(228, 255);
+            this.txtEmpUsername.Location = new System.Drawing.Point(184, 189);
             this.txtEmpUsername.Name = "txtEmpUsername";
             this.txtEmpUsername.Size = new System.Drawing.Size(100, 20);
             this.txtEmpUsername.TabIndex = 10;
             // 
             // txtEmpEmail
             // 
-            this.txtEmpEmail.Location = new System.Drawing.Point(228, 204);
+            this.txtEmpEmail.Location = new System.Drawing.Point(184, 142);
             this.txtEmpEmail.Name = "txtEmpEmail";
             this.txtEmpEmail.Size = new System.Drawing.Size(209, 20);
             this.txtEmpEmail.TabIndex = 9;
             // 
-            // txtEmpDesignation
-            // 
-            this.txtEmpDesignation.Location = new System.Drawing.Point(228, 138);
-            this.txtEmpDesignation.Name = "txtEmpDesignation";
-            this.txtEmpDesignation.Size = new System.Drawing.Size(100, 20);
-            this.txtEmpDesignation.TabIndex = 8;
-            // 
             // txtEmpName
             // 
-            this.txtEmpName.Location = new System.Drawing.Point(228, 89);
+            this.txtEmpName.Location = new System.Drawing.Point(184, 92);
             this.txtEmpName.Name = "txtEmpName";
             this.txtEmpName.Size = new System.Drawing.Size(209, 20);
             this.txtEmpName.TabIndex = 7;
             // 
             // txtEmpID
             // 
-            this.txtEmpID.Location = new System.Drawing.Point(228, 38);
+            this.txtEmpID.Location = new System.Drawing.Point(184, 41);
             this.txtEmpID.Name = "txtEmpID";
             this.txtEmpID.Size = new System.Drawing.Size(100, 20);
             this.txtEmpID.TabIndex = 6;
@@ -360,7 +341,7 @@
             // label18
             // 
             this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(126, 315);
+            this.label18.Location = new System.Drawing.Point(82, 245);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(59, 13);
             this.label18.TabIndex = 5;
@@ -369,7 +350,7 @@
             // label17
             // 
             this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(126, 258);
+            this.label17.Location = new System.Drawing.Point(82, 196);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(61, 13);
             this.label17.TabIndex = 4;
@@ -378,7 +359,7 @@
             // label16
             // 
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(126, 207);
+            this.label16.Location = new System.Drawing.Point(82, 149);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(38, 13);
             this.label16.TabIndex = 3;
@@ -387,16 +368,16 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(126, 138);
+            this.label15.Location = new System.Drawing.Point(82, 296);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(69, 13);
+            this.label15.Size = new System.Drawing.Size(62, 13);
             this.label15.TabIndex = 2;
-            this.label15.Text = "Designation :";
+            this.label15.Text = "User Type :";
             // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(126, 89);
+            this.label14.Location = new System.Drawing.Point(82, 92);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(90, 13);
             this.label14.TabIndex = 1;
@@ -405,7 +386,7 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(126, 41);
+            this.label13.Location = new System.Drawing.Point(82, 44);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(73, 13);
             this.label13.TabIndex = 0;
@@ -416,12 +397,10 @@
             this.UserProfile.Controls.Add(this.txtNewPassword);
             this.UserProfile.Controls.Add(this.txtCurrentPassword);
             this.UserProfile.Controls.Add(this.txtUserEmpEmail);
-            this.UserProfile.Controls.Add(this.txtUserEmpDesignation);
             this.UserProfile.Controls.Add(this.txtUserEmpName);
             this.UserProfile.Controls.Add(this.btnChangePassword);
             this.UserProfile.Controls.Add(this.label19);
             this.UserProfile.Controls.Add(this.label21);
-            this.UserProfile.Controls.Add(this.label22);
             this.UserProfile.Controls.Add(this.label23);
             this.UserProfile.Location = new System.Drawing.Point(4, 22);
             this.UserProfile.Name = "UserProfile";
@@ -434,7 +413,7 @@
             // 
             // txtNewPassword
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(292, 255);
+            this.txtNewPassword.Location = new System.Drawing.Point(292, 206);
             this.txtNewPassword.Name = "txtNewPassword";
             this.txtNewPassword.Size = new System.Drawing.Size(118, 20);
             this.txtNewPassword.TabIndex = 26;
@@ -442,7 +421,7 @@
             // 
             // txtCurrentPassword
             // 
-            this.txtCurrentPassword.Location = new System.Drawing.Point(292, 211);
+            this.txtCurrentPassword.Location = new System.Drawing.Point(292, 162);
             this.txtCurrentPassword.Name = "txtCurrentPassword";
             this.txtCurrentPassword.Size = new System.Drawing.Size(118, 20);
             this.txtCurrentPassword.TabIndex = 24;
@@ -456,14 +435,6 @@
             this.txtUserEmpEmail.Size = new System.Drawing.Size(209, 20);
             this.txtUserEmpEmail.TabIndex = 22;
             // 
-            // txtUserEmpDesignation
-            // 
-            this.txtUserEmpDesignation.Enabled = false;
-            this.txtUserEmpDesignation.Location = new System.Drawing.Point(292, 159);
-            this.txtUserEmpDesignation.Name = "txtUserEmpDesignation";
-            this.txtUserEmpDesignation.Size = new System.Drawing.Size(118, 20);
-            this.txtUserEmpDesignation.TabIndex = 21;
-            // 
             // txtUserEmpName
             // 
             this.txtUserEmpName.Enabled = false;
@@ -474,7 +445,7 @@
             // 
             // btnChangePassword
             // 
-            this.btnChangePassword.Location = new System.Drawing.Point(292, 298);
+            this.btnChangePassword.Location = new System.Drawing.Point(292, 249);
             this.btnChangePassword.Name = "btnChangePassword";
             this.btnChangePassword.Size = new System.Drawing.Size(118, 23);
             this.btnChangePassword.TabIndex = 25;
@@ -485,7 +456,7 @@
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(196, 214);
+            this.label19.Location = new System.Drawing.Point(196, 165);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(59, 13);
             this.label19.TabIndex = 18;
@@ -500,15 +471,6 @@
             this.label21.TabIndex = 16;
             this.label21.Text = "Email :";
             // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(196, 162);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(69, 13);
-            this.label22.TabIndex = 15;
-            this.label22.Text = "Designation :";
-            // 
             // label23
             // 
             this.label23.AutoSize = true;
@@ -518,17 +480,17 @@
             this.label23.TabIndex = 14;
             this.label23.Text = "Employee Name :";
             // 
-            // tabPage6
+            // TransactionHistory
             // 
-            this.tabPage6.Controls.Add(this.dgvTransHistory);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
-            this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage6.Size = new System.Drawing.Size(738, 371);
-            this.tabPage6.TabIndex = 5;
-            this.tabPage6.Text = "Transaction History";
-            this.tabPage6.UseVisualStyleBackColor = true;
-            this.tabPage6.Click += new System.EventHandler(this.tabPage6_Click);
+            this.TransactionHistory.Controls.Add(this.dgvTransHistory);
+            this.TransactionHistory.Location = new System.Drawing.Point(4, 22);
+            this.TransactionHistory.Name = "TransactionHistory";
+            this.TransactionHistory.Padding = new System.Windows.Forms.Padding(3);
+            this.TransactionHistory.Size = new System.Drawing.Size(738, 371);
+            this.TransactionHistory.TabIndex = 5;
+            this.TransactionHistory.Text = "Transaction History";
+            this.TransactionHistory.UseVisualStyleBackColor = true;
+            this.TransactionHistory.Click += new System.EventHandler(this.tabPage6_Click);
             // 
             // dgvTransHistory
             // 
@@ -542,40 +504,86 @@
             this.dateDataGridViewTextBoxColumn,
             this.tellerDataGridViewTextBoxColumn});
             this.dgvTransHistory.DataSource = this.transactionsBindingSource;
-            this.dgvTransHistory.Location = new System.Drawing.Point(44, 25);
+            this.dgvTransHistory.Location = new System.Drawing.Point(33, 21);
             this.dgvTransHistory.Name = "dgvTransHistory";
-            this.dgvTransHistory.Size = new System.Drawing.Size(643, 328);
+            this.dgvTransHistory.Size = new System.Drawing.Size(643, 288);
             this.dgvTransHistory.TabIndex = 0;
             // 
-            // TransactionHistory
+            // tIDDataGridViewTextBoxColumn
             // 
-            this.TransactionHistory.Controls.Add(this.label44);
-            this.TransactionHistory.Controls.Add(this.txtFdToAccBalance);
-            this.TransactionHistory.Controls.Add(this.txtFdToAccName);
-            this.TransactionHistory.Controls.Add(this.txtFdFrmAccBalance);
-            this.TransactionHistory.Controls.Add(this.txtFdFrmAccName);
-            this.TransactionHistory.Controls.Add(this.txtFdToAccDescription);
-            this.TransactionHistory.Controls.Add(this.txtFdToAccount);
-            this.TransactionHistory.Controls.Add(this.txtFdFrmAccDescription);
-            this.TransactionHistory.Controls.Add(this.txtFdAmount);
-            this.TransactionHistory.Controls.Add(this.txtFdFrmAccount);
-            this.TransactionHistory.Controls.Add(this.btnFdCancel);
-            this.TransactionHistory.Controls.Add(this.btnFdTransfer);
-            this.TransactionHistory.Controls.Add(this.label40);
-            this.TransactionHistory.Controls.Add(this.label39);
-            this.TransactionHistory.Controls.Add(this.label38);
-            this.TransactionHistory.Controls.Add(this.label37);
-            this.TransactionHistory.Controls.Add(this.label36);
-            this.TransactionHistory.Controls.Add(this.label35);
-            this.TransactionHistory.Controls.Add(this.label34);
-            this.TransactionHistory.Controls.Add(this.label33);
-            this.TransactionHistory.Location = new System.Drawing.Point(4, 22);
-            this.TransactionHistory.Name = "TransactionHistory";
-            this.TransactionHistory.Padding = new System.Windows.Forms.Padding(3);
-            this.TransactionHistory.Size = new System.Drawing.Size(738, 371);
-            this.TransactionHistory.TabIndex = 4;
-            this.TransactionHistory.Text = "Funds Transfer";
-            this.TransactionHistory.UseVisualStyleBackColor = true;
+            this.tIDDataGridViewTextBoxColumn.DataPropertyName = "TID";
+            this.tIDDataGridViewTextBoxColumn.HeaderText = "TID";
+            this.tIDDataGridViewTextBoxColumn.Name = "tIDDataGridViewTextBoxColumn";
+            // 
+            // accountDataGridViewTextBoxColumn
+            // 
+            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
+            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
+            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
+            // 
+            // amountDataGridViewTextBoxColumn
+            // 
+            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
+            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
+            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
+            // 
+            // descriptionDataGridViewTextBoxColumn
+            // 
+            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
+            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
+            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
+            // 
+            // dateDataGridViewTextBoxColumn
+            // 
+            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
+            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
+            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
+            // 
+            // tellerDataGridViewTextBoxColumn
+            // 
+            this.tellerDataGridViewTextBoxColumn.DataPropertyName = "Teller";
+            this.tellerDataGridViewTextBoxColumn.HeaderText = "Teller";
+            this.tellerDataGridViewTextBoxColumn.Name = "tellerDataGridViewTextBoxColumn";
+            // 
+            // transactionsBindingSource
+            // 
+            this.transactionsBindingSource.DataMember = "Transactions";
+            this.transactionsBindingSource.DataSource = this.cBCDataSet;
+            // 
+            // cBCDataSet
+            // 
+            this.cBCDataSet.DataSetName = "CBCDataSet";
+            this.cBCDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // FundTransfer
+            // 
+            this.FundTransfer.Controls.Add(this.label44);
+            this.FundTransfer.Controls.Add(this.txtFdToAccBalance);
+            this.FundTransfer.Controls.Add(this.txtFdToAccName);
+            this.FundTransfer.Controls.Add(this.txtFdFrmAccBalance);
+            this.FundTransfer.Controls.Add(this.txtFdFrmAccName);
+            this.FundTransfer.Controls.Add(this.txtFdToAccDescription);
+            this.FundTransfer.Controls.Add(this.txtFdToAccount);
+            this.FundTransfer.Controls.Add(this.txtFdFrmAccDescription);
+            this.FundTransfer.Controls.Add(this.txtFdAmount);
+            this.FundTransfer.Controls.Add(this.txtFdFrmAccount);
+            this.FundTransfer.Controls.Add(this.btnFdCancel);
+            this.FundTransfer.Controls.Add(this.btnFdTransfer);
+            this.FundTransfer.Controls.Add(this.label40);
+            this.FundTransfer.Controls.Add(this.label39);
+            this.FundTransfer.Controls.Add(this.label38);
+            this.FundTransfer.Controls.Add(this.label37);
+            this.FundTransfer.Controls.Add(this.label36);
+            this.FundTransfer.Controls.Add(this.label35);
+            this.FundTransfer.Controls.Add(this.label34);
+            this.FundTransfer.Controls.Add(this.label33);
+            this.FundTransfer.Location = new System.Drawing.Point(4, 22);
+            this.FundTransfer.Name = "FundTransfer";
+            this.FundTransfer.Padding = new System.Windows.Forms.Padding(3);
+            this.FundTransfer.Size = new System.Drawing.Size(738, 371);
+            this.FundTransfer.TabIndex = 4;
+            this.FundTransfer.Text = "Funds Transfer";
+            this.FundTransfer.UseVisualStyleBackColor = true;
             // 
             // label44
             // 
@@ -1063,6 +1071,42 @@
             this.dgvAccount.TabIndex = 12;
             this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             // 
+            // numberDataGridViewTextBoxColumn
+            // 
+            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
+            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
+            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
+            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // customerNameDataGridViewTextBoxColumn
+            // 
+            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
+            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
+            // 
+            // balanceDataGridViewTextBoxColumn
+            // 
+            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
+            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
+            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
+            // 
+            // dateOpenedDataGridViewTextBoxColumn
+            // 
+            this.dateOpenedDataGridViewTextBoxColumn.DataPropertyName = "Date Opened";
+            this.dateOpenedDataGridViewTextBoxColumn.HeaderText = "Date Opened";
+            this.dateOpenedDataGridViewTextBoxColumn.Name = "dateOpenedDataGridViewTextBoxColumn";
+            // 
+            // statusDataGridViewTextBoxColumn
+            // 
+            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
+            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
+            // 
+            // accountBindingSource
+            // 
+            this.accountBindingSource.DataMember = "Account";
+            this.accountBindingSource.DataSource = this.cBCDataSet;
+            // 
             // btnPrintMandate
             // 
             this.btnPrintMandate.Location = new System.Drawing.Point(621, 236);
@@ -1400,103 +1444,21 @@
             this.label3.TabIndex = 0;
             this.label3.Text = "NIC/PP/DL No :";
             // 
-            // FundsTransfer
+            // Tabs
             // 
-            this.FundsTransfer.Controls.Add(this.ManageCustomer);
-            this.FundsTransfer.Controls.Add(this.ManageAccount);
-            this.FundsTransfer.Controls.Add(this.Deposit);
-            this.FundsTransfer.Controls.Add(this.Withdrawal);
-            this.FundsTransfer.Controls.Add(this.TransactionHistory);
-            this.FundsTransfer.Controls.Add(this.tabPage6);
-            this.FundsTransfer.Controls.Add(this.UserProfile);
-            this.FundsTransfer.Controls.Add(this.ManageUser);
-            this.FundsTransfer.Location = new System.Drawing.Point(27, 34);
-            this.FundsTransfer.Name = "FundsTransfer";
-            this.FundsTransfer.SelectedIndex = 0;
-            this.FundsTransfer.Size = new System.Drawing.Size(746, 397);
-            this.FundsTransfer.TabIndex = 3;
-            // 
-            // numberDataGridViewTextBoxColumn
-            // 
-            this.numberDataGridViewTextBoxColumn.DataPropertyName = "Number";
-            this.numberDataGridViewTextBoxColumn.HeaderText = "Number";
-            this.numberDataGridViewTextBoxColumn.Name = "numberDataGridViewTextBoxColumn";
-            this.numberDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // customerNameDataGridViewTextBoxColumn
-            // 
-            this.customerNameDataGridViewTextBoxColumn.DataPropertyName = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.HeaderText = "Customer Name";
-            this.customerNameDataGridViewTextBoxColumn.Name = "customerNameDataGridViewTextBoxColumn";
-            // 
-            // balanceDataGridViewTextBoxColumn
-            // 
-            this.balanceDataGridViewTextBoxColumn.DataPropertyName = "Balance";
-            this.balanceDataGridViewTextBoxColumn.HeaderText = "Balance";
-            this.balanceDataGridViewTextBoxColumn.Name = "balanceDataGridViewTextBoxColumn";
-            // 
-            // dateOpenedDataGridViewTextBoxColumn
-            // 
-            this.dateOpenedDataGridViewTextBoxColumn.DataPropertyName = "Date Opened";
-            this.dateOpenedDataGridViewTextBoxColumn.HeaderText = "Date Opened";
-            this.dateOpenedDataGridViewTextBoxColumn.Name = "dateOpenedDataGridViewTextBoxColumn";
-            // 
-            // statusDataGridViewTextBoxColumn
-            // 
-            this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
-            this.statusDataGridViewTextBoxColumn.HeaderText = "Status";
-            this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
-            // 
-            // accountBindingSource
-            // 
-            this.accountBindingSource.DataMember = "Account";
-            this.accountBindingSource.DataSource = this.cBCDataSet;
-            // 
-            // cBCDataSet
-            // 
-            this.cBCDataSet.DataSetName = "CBCDataSet";
-            this.cBCDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // tIDDataGridViewTextBoxColumn
-            // 
-            this.tIDDataGridViewTextBoxColumn.DataPropertyName = "TID";
-            this.tIDDataGridViewTextBoxColumn.HeaderText = "TID";
-            this.tIDDataGridViewTextBoxColumn.Name = "tIDDataGridViewTextBoxColumn";
-            // 
-            // accountDataGridViewTextBoxColumn
-            // 
-            this.accountDataGridViewTextBoxColumn.DataPropertyName = "Account";
-            this.accountDataGridViewTextBoxColumn.HeaderText = "Account";
-            this.accountDataGridViewTextBoxColumn.Name = "accountDataGridViewTextBoxColumn";
-            // 
-            // amountDataGridViewTextBoxColumn
-            // 
-            this.amountDataGridViewTextBoxColumn.DataPropertyName = "Amount";
-            this.amountDataGridViewTextBoxColumn.HeaderText = "Amount";
-            this.amountDataGridViewTextBoxColumn.Name = "amountDataGridViewTextBoxColumn";
-            // 
-            // descriptionDataGridViewTextBoxColumn
-            // 
-            this.descriptionDataGridViewTextBoxColumn.DataPropertyName = "Description";
-            this.descriptionDataGridViewTextBoxColumn.HeaderText = "Description";
-            this.descriptionDataGridViewTextBoxColumn.Name = "descriptionDataGridViewTextBoxColumn";
-            // 
-            // dateDataGridViewTextBoxColumn
-            // 
-            this.dateDataGridViewTextBoxColumn.DataPropertyName = "Date";
-            this.dateDataGridViewTextBoxColumn.HeaderText = "Date";
-            this.dateDataGridViewTextBoxColumn.Name = "dateDataGridViewTextBoxColumn";
-            // 
-            // tellerDataGridViewTextBoxColumn
-            // 
-            this.tellerDataGridViewTextBoxColumn.DataPropertyName = "Teller";
-            this.tellerDataGridViewTextBoxColumn.HeaderText = "Teller";
-            this.tellerDataGridViewTextBoxColumn.Name = "tellerDataGridViewTextBoxColumn";
-            // 
-            // transactionsBindingSource
-            // 
-            this.transactionsBindingSource.DataMember = "Transactions";
-            this.transactionsBindingSource.DataSource = this.cBCDataSet;
+            this.Tabs.Controls.Add(this.ManageCustomer);
+            this.Tabs.Controls.Add(this.ManageAccount);
+            this.Tabs.Controls.Add(this.Deposit);
+            this.Tabs.Controls.Add(this.Withdrawal);
+            this.Tabs.Controls.Add(this.FundTransfer);
+            this.Tabs.Controls.Add(this.TransactionHistory);
+            this.Tabs.Controls.Add(this.UserProfile);
+            this.Tabs.Controls.Add(this.ManageUser);
+            this.Tabs.Location = new System.Drawing.Point(27, 34);
+            this.Tabs.Name = "Tabs";
+            this.Tabs.SelectedIndex = 0;
+            this.Tabs.Size = new System.Drawing.Size(746, 397);
+            this.Tabs.TabIndex = 3;
             // 
             // cBCDataSetBindingSource
             // 
@@ -1516,25 +1478,27 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.ControlBox = false;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.FundsTransfer);
-            this.Controls.Add(this.btnExit);
+            this.Controls.Add(this.Tabs);
             this.Controls.Add(this.btnLogout);
             this.Controls.Add(this.txtUser);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "CBC Bank Transaction Management System";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ManageUser.ResumeLayout(false);
             this.ManageUser.PerformLayout();
             this.UserProfile.ResumeLayout(false);
             this.UserProfile.PerformLayout();
-            this.tabPage6.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvTransHistory)).EndInit();
             this.TransactionHistory.ResumeLayout(false);
-            this.TransactionHistory.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvTransHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cBCDataSet)).EndInit();
+            this.FundTransfer.ResumeLayout(false);
+            this.FundTransfer.PerformLayout();
             this.Withdrawal.ResumeLayout(false);
             this.Withdrawal.PerformLayout();
             this.Deposit.ResumeLayout(false);
@@ -1542,14 +1506,12 @@
             this.ManageAccount.ResumeLayout(false);
             this.ManageAccount.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAccount)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
             this.ManageCustomer.ResumeLayout(false);
             this.ManageCustomer.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSignature)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxPhotograph)).EndInit();
-            this.FundsTransfer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.accountBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cBCDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.transactionsBindingSource)).EndInit();
+            this.Tabs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.cBCDataSetBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -1560,9 +1522,8 @@
 
         private System.Windows.Forms.TextBox txtUser;
         private System.Windows.Forms.Button btnLogout;
-        private System.Windows.Forms.Button btnExit;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        
         private System.Windows.Forms.TabPage ManageUser;
         private System.Windows.Forms.Button btnEmpClear;
         private System.Windows.Forms.Button btnDeleteEmp;
@@ -1572,7 +1533,6 @@
         private System.Windows.Forms.TextBox txtEmpPassword;
         private System.Windows.Forms.TextBox txtEmpUsername;
         private System.Windows.Forms.TextBox txtEmpEmail;
-        private System.Windows.Forms.TextBox txtEmpDesignation;
         private System.Windows.Forms.TextBox txtEmpName;
         private System.Windows.Forms.TextBox txtEmpID;
         private System.Windows.Forms.Label label18;
@@ -1585,15 +1545,13 @@
         private System.Windows.Forms.TextBox txtNewPassword;
         private System.Windows.Forms.TextBox txtCurrentPassword;
         private System.Windows.Forms.TextBox txtUserEmpEmail;
-        private System.Windows.Forms.TextBox txtUserEmpDesignation;
         private System.Windows.Forms.TextBox txtUserEmpName;
         private System.Windows.Forms.Button btnChangePassword;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label21;
-        private System.Windows.Forms.Label label22;
         private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.TabPage tabPage6;
         private System.Windows.Forms.TabPage TransactionHistory;
+        private System.Windows.Forms.TabPage FundTransfer;
         private System.Windows.Forms.TextBox txtFdToAccName;
         private System.Windows.Forms.TextBox txtFdFrmAccBalance;
         private System.Windows.Forms.TextBox txtFdFrmAccName;
@@ -1665,7 +1623,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TabControl FundsTransfer;
+        private System.Windows.Forms.TabControl Tabs;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label41;
@@ -1699,5 +1657,6 @@
         private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox txtFdToAccBalance;
+        private System.Windows.Forms.ComboBox cbxUserType;
     }
 }

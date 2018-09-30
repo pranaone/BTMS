@@ -15,6 +15,7 @@ namespace BTMS
     {
         public Customer cust;
         SqlConnection con = DBConnect.Connect();
+        public string customerNIC;
 
         public void createCustomer(Customer obj) // create customer function
         {
@@ -35,12 +36,14 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Added");
+                MessageBox.Show("Customer Successfully Added!!");
             }
             catch (Exception ex)
             { MessageBox.Show(ex.ToString()); }
             finally { con.Close(); };
         }
+
+
         public void deleteCustomer(string cid) // delete customer function
         {
             try
@@ -49,7 +52,7 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Customer Successfully Deleted");
+                MessageBox.Show("Customer Successfully Deleted!!");
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
@@ -73,11 +76,31 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Updated");
+                MessageBox.Show("Customer Successfully Updated!!");
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
             finally { con.Close(); };
+        }
+        public string getCustomerNIC(string nic)
+        {
+            try
+            {
+                string sql = "select * from [Customer] where NIC = '" + nic + "'";
+                SqlCommand cmd = new SqlCommand(sql, con);
+                con.Open();
+                SqlDataReader dreader = cmd.ExecuteReader();
+                if (dreader.Read())
+                {
+                    customerNIC = dreader[1].ToString();      
+                }
+                dreader.Close();
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            finally { con.Close(); }
+
+            return customerNIC;
+
         }
         public Customer searchCustomer(string nic) // search customer function
         {

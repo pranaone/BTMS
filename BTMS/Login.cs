@@ -34,14 +34,15 @@ namespace BTMS
                 user = dt.Rows[0][2].ToString().Trim();
                 if (user == "Admin")
                 {
+                    Session.UserType = "Admin";
                     this.Hide();
-                    new MainWindow().Show();
-                    
+                    new MainWindow().Show(); 
                 }
                 else if (user == "Teller")
                 {
+                    Session.UserType = "Teller";
                     this.Hide();
-                    new MainWindow().Show();   
+                    new MainWindow().Show();
                 }
                 else { MessageBox.Show("Undefined User!!"); }
             }
@@ -52,7 +53,8 @@ namespace BTMS
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            txtUsername.Clear();
+            txtPassword.Clear();
         }
     }
 }

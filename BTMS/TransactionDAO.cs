@@ -11,18 +11,19 @@ namespace BTMS
     class TransactionDAO
     {
         SqlConnection con = DBConnect.Connect();
-
+        
         public void logTransaction(Transactions obj)
         {
             try
             {
-                string sql = "insert into [Transactions] ([Account],[Amount],[Description],[Date],[Teller]) values ('" + obj.Account + "','" +obj.Amount + "','" + obj.Description + "','" + obj.Date + "','" + obj.Teller + "')";
-                SqlCommand cmd = new SqlCommand(sql, con);
+                string sql1 = "insert into [Transactions] ([Account],[Amount],[Description],[Date],[Teller]) values ('" + obj.Account + "','" + obj.Amount + "','" + obj.Description + "','" + obj.Date + "','" + obj.Teller + "')";
+                SqlCommand cmd1 = new SqlCommand(sql1, con);
                 con.Open();
-                cmd.ExecuteNonQuery();
+                cmd1.ExecuteNonQuery();
             }
-            catch (Exception ex){ MessageBox.Show(ex.ToString());}
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { con.Close(); };
+
         }
 
     }
