@@ -102,7 +102,7 @@ namespace BTMS
                 SqlDataReader dreader = cmd.ExecuteReader();
                 if (dreader.Read())
                 {
-                    var acc = Convert.ToInt32(dreader[1]);
+                    var acc = Convert.ToInt32(dreader[0]);
                     if (acc == account)
                     {
                         found = true;
@@ -111,7 +111,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception) { MessageBox.Show("No Account Found!!"); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString());}
             finally { con.Close(); }
             return found;
         }

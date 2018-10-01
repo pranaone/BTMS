@@ -74,12 +74,13 @@ namespace BTMS
         {
             try
             {
-                eDAO.searchUser(txtEmpID.Text);
-                txtEmpName.Text = eDAO.emp.Name;
-                cbxUserType.Text = eDAO.emp.Designation;
-                txtEmpEmail.Text = eDAO.emp.Email;
-                txtEmpUsername.Text = eDAO.emp.Username;
-                txtEmpPassword.Text = eDAO.emp.Password;
+                EmployeeDAO eDAOx = new EmployeeDAO();
+                eDAOx.searchUser(txtEmpID.Text);
+                txtEmpName.Text = eDAOx.emp.Name;
+                cbxUserType.Text = eDAOx.emp.Designation;
+                txtEmpEmail.Text = eDAOx.emp.Email;
+                txtEmpUsername.Text = eDAOx.emp.Username;
+                txtEmpPassword.Text = eDAOx.emp.Password;
             }
             catch (Exception)
             {
@@ -134,20 +135,21 @@ namespace BTMS
         {
             try
             {
-                cDAO.searchCustomer(txtID.Text);
-                txtFullName.Text = cDAO.cust.Name;
-                txtCustomerID.Text = cDAO.cust.CID.ToString();
-                txtAddress.Text = cDAO.cust.Address;
-                txtContact.Text = cDAO.cust.Contact;
-                txtEmail.Text = cDAO.cust.Email;
-                txtOccupation.Text = cDAO.cust.Occupation;
-                txtDOB.Value = cDAO.cust.DOB;
-                pbxPhotograph.Image = byteArrayToImage(cDAO.cust.Photo);
-                pbxSignature.Image = byteArrayToImage(cDAO.cust.Signature);
+                CustomerDAO cDAOx = new CustomerDAO();
+                cDAOx.searchCustomer(txtID.Text);
+                txtFullName.Text = cDAOx.cust.Name;
+                txtCustomerID.Text = cDAOx.cust.CID.ToString();
+                txtAddress.Text = cDAOx.cust.Address;
+                txtContact.Text = cDAOx.cust.Contact;
+                txtEmail.Text = cDAOx.cust.Email;
+                txtOccupation.Text = cDAOx.cust.Occupation;
+                txtDOB.Value = cDAOx.cust.DOB;
+                pbxPhotograph.Image = byteArrayToImage(cDAOx.cust.Photo);
+                pbxSignature.Image = byteArrayToImage(cDAOx.cust.Signature);
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                MessageBox.Show(ex.ToString());
+                MessageBox.Show("No Customer Record Found!!");
                 clearCustomer();
             }
         }
@@ -272,10 +274,11 @@ namespace BTMS
         {
             try
             {
-                cDAO.searchCustomer(txtAccID.Text);
-                txtAccCustID.Text = cDAO.cust.CID.ToString();
-                txtAccCustName.Text = cDAO.cust.Name;
-                var CID = cDAO.cust.CID.ToString();
+                CustomerDAO cDAOx = new CustomerDAO();
+                cDAOx.searchCustomer(txtAccID.Text);
+                txtAccCustID.Text = cDAOx.cust.CID.ToString();
+                txtAccCustName.Text = cDAOx.cust.Name;
+                var CID = cDAOx.cust.CID.ToString();
                 DataTable dt = new DataTable();
                 SqlDataAdapter sda = new SqlDataAdapter("select * from Account where CID = '" + CID + "'", con);
                 sda.Fill(dt);
@@ -320,11 +323,15 @@ namespace BTMS
         {
             try
             {
-                txtDepAccBalance.Text = aDAO.checkBalance(Convert.ToInt32(txtDepAccNumber.Text)).ToString();
-                txtDepAccName.Text = aDAO.getAccountName(Convert.ToInt32(txtDepAccNumber.Text));
+                AccountDAO obj = new AccountDAO();
+                txtDepAccBalance.Text = obj.checkBalance(Convert.ToInt32(txtDepAccNumber.Text)).ToString();
+                txtDepAccName.Text = obj.getAccountName(Convert.ToInt32(txtDepAccNumber.Text));
             }
-            catch (Exception) { /* to suppress invalid input string error */}
+            catch (Exception) { }
+         
         }
+
+    
 
         private void clearDeposit()
         {
@@ -337,6 +344,7 @@ namespace BTMS
         private void BtnDepCancel_Click(object sender, EventArgs e)
         {
             clearDeposit();
+            
         }
 
         private void btnDeposit_Click(object sender, EventArgs e)
@@ -364,6 +372,8 @@ namespace BTMS
         private void btnWithdrawCancel_Click(object sender, EventArgs e)
         {
             clearWithdrawal();
+           
+            GC.Collect();
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
@@ -383,10 +393,12 @@ namespace BTMS
         {
             try
             {
-                txtWithAccBalance.Text = aDAO.checkBalance(Convert.ToInt32(txtWithAccNumber.Text)).ToString();
-                txtWithAccName.Text = aDAO.getAccountName(Convert.ToInt32(txtWithAccNumber.Text));
+                AccountDAO obj = new AccountDAO();
+                txtWithAccBalance.Text = obj.checkBalance(Convert.ToInt32(txtWithAccNumber.Text)).ToString();
+                txtWithAccName.Text = obj.getAccountName(Convert.ToInt32(txtWithAccNumber.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
+            
 
         }
         private void clearTransfer()
@@ -429,8 +441,9 @@ namespace BTMS
         {
             try
             {
-                txtFdFrmAccBalance.Text = aDAO.checkBalance(Convert.ToInt32(txtFdFrmAccount.Text)).ToString();
-                txtFdFrmAccName.Text = aDAO.getAccountName(Convert.ToInt32(txtFdFrmAccount.Text));
+                AccountDAO obj1 = new AccountDAO();
+                txtFdFrmAccBalance.Text = obj1.checkBalance(Convert.ToInt32(txtFdFrmAccount.Text)).ToString();
+                txtFdFrmAccName.Text = obj1.getAccountName(Convert.ToInt32(txtFdFrmAccount.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
 
@@ -440,8 +453,9 @@ namespace BTMS
         {
             try
             {
-                txtFdToAccBalance.Text = aDAO.checkBalance(Convert.ToInt32(txtFdToAccount.Text)).ToString();
-                txtFdToAccName.Text = aDAO.getAccountName(Convert.ToInt32(txtFdToAccount.Text));
+                AccountDAO obj2 = new AccountDAO();
+                txtFdToAccBalance.Text = obj2.checkBalance(Convert.ToInt32(txtFdToAccount.Text)).ToString();
+                txtFdToAccName.Text = obj2.getAccountName(Convert.ToInt32(txtFdToAccount.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
 
@@ -460,9 +474,17 @@ namespace BTMS
             SqlDataAdapter sda = new SqlDataAdapter("select * from Transactions where Teller ='"+txtUser.Text+"'", con);
             sda.Fill(dt);
             dgvTransHistory.DataSource = dt;
+            // displays all the transactions done by the logged in teller
         }
 
-      
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+            // completely stops the thread after exiting the application
+            // prevents application running in the background even after exiting 
+        }
+
+       
     }
 }
 

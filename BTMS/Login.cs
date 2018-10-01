@@ -56,5 +56,11 @@ namespace BTMS
             txtUsername.Clear();
             txtPassword.Clear();
         }
+
+        private void Login_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit(); // completely stops the thread after exiting the application
+            // prevents application running in the background even after exiting 
+        }
     }
 }
