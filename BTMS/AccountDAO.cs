@@ -11,7 +11,7 @@ namespace BTMS
     class AccountDAO
     {
         int bal;
-        bool close,found;
+        bool close, found;
         string name;
         SqlConnection con = DBConnect.Connect();
 
@@ -111,11 +111,11 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString());}
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
             finally { con.Close(); }
             return found;
         }
-            
+
 
         public bool isClose(int account)
         {
@@ -198,27 +198,29 @@ namespace BTMS
         }
         public void fundsTransfer(int frmAccount, int frmCurBal, int trfAmt, int toAccount, int toCurBal)
         {
-            if (checkAccount(frmAccount) == true)
+            if (checkAccount(toAccount) == true)
             {
-                if (isClose(frmAccount) == false)
+                if (isClose(toAccount) == false)
                 {
-                    int newFrmBal = frmCurBal - trfAmt;
-                    if (newFrmBal >= 0)
+
+                    if (checkAccount(frmAccount) == true)
                     {
-                        try
+                        if (isClose(frmAccount) == false)
                         {
-                            string sql = "update Account set Balance ='" + newFrmBal + "' where Number = '" + frmAccount + "'";
-                            SqlCommand cmd = new SqlCommand(sql, con);
-                            con.Open();
-                            cmd.ExecuteNonQuery();
-                        }
-                        catch (Exception)
-                        { MessageBox.Show("Error Occured - Transfer Failed!!"); }
-                        finally { con.Close(); };
-                        if (checkAccount(toAccount)== true)
-                        {
-                            if (isClose(toAccount) == false)
+                            int newFrmBal = frmCurBal - trfAmt;
+                            if (newFrmBal >= 0)
                             {
+                                try
+                                {
+                                    string sql = "update Account set Balance ='" + newFrmBal + "' where Number = '" + frmAccount + "'";
+                                    SqlCommand cmd = new SqlCommand(sql, con);
+                                    con.Open();
+                                    cmd.ExecuteNonQuery();
+                                }
+                                catch (Exception)
+                                { MessageBox.Show("Error Occured - Transfer Failed!!"); }
+                                finally { con.Close(); };
+
                                 int newToBal = toCurBal + trfAmt;
                                 try
                                 {
@@ -231,20 +233,20 @@ namespace BTMS
                                 catch (Exception)
                                 { MessageBox.Show("Error Occured - Transfer Failed!!"); }
                                 finally { con.Close(); };
+
                             }
-                            else { MessageBox.Show("Unable to Transfer - To Account is Closed!!"); }
+                            else { MessageBox.Show("Transfer Amount Exceeds Available Account Balance!!"); }
+
                         }
-                        else { MessageBox.Show("Unable to Transfer - Invalid To Account Number!!"); }
-
+                        else { MessageBox.Show("Unable to Transfer - From Account is Closed!!"); }
                     }
-                    else { MessageBox.Show("Transfer Amount Exceeds Available Account Balance!!"); }
+                    else { MessageBox.Show("Unable to Transfer - Invalid From Account Number!!"); }
                 }
-                else { MessageBox.Show("Unable to Transfer - From Account is Closed!!"); }
+                else { MessageBox.Show("Unable to Transfer - To Account is Closed!!"); }
             }
-            else { MessageBox.Show("Unable to Transfer - Invalid From Account Number!!"); }
-
-
+            else { MessageBox.Show("Unable to Transfer - Invalid To Account Number!!"); }
 
         }
+            
     }
 }

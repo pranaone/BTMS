@@ -167,22 +167,22 @@ namespace BTMS
                 pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
                 var Signature = ms2.ToArray();
 
-                cDAO.getCustomerNIC(txtID.Text);
-                string custID = cDAO.customerNIC.ToString();
-                if (custID != txtID.Text)
-                {
-                    Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
-                    cDAO.createCustomer(obj);
-                }
+                Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
+                cDAO.createCustomer(obj);
+
+                /*cDAO.getCustomerNIC(txtID.Text);
+                //string custID = cDAO.customerNIC.ToString();
+                //if (custID == null)
+                //{
+                    
+                //}
                 else
                 {
                     MessageBox.Show("Customer Record Already Exists!!");
                     clearCustomer();
-                }
+                }*/
             }
-                
-           
-            catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!");}
+            catch (Exception ex) { MessageBox.Show("Please Upload Customer Photograph/Signature!!" + ex.ToString());}
             
             clearCustomer();
 
@@ -417,18 +417,24 @@ namespace BTMS
 
         private void btnFdTransfer_Click(object sender, EventArgs e)
         {
-            var frmAcc = Convert.ToInt32(txtFdFrmAccount.Text);
-            var frmCurBal = Convert.ToInt32(txtFdFrmAccBalance.Text);
-            var trfAmt = Convert.ToInt32(txtFdAmount.Text);
-            var toAcc = Convert.ToInt32(txtFdToAccount.Text);
-            var toCurBal = Convert.ToInt32(txtFdToAccBalance.Text);
+            try
+            {
+                var frmAcc = Convert.ToInt32(txtFdFrmAccount.Text);
+                var frmCurBal = Convert.ToInt32(txtFdFrmAccBalance.Text);
+                var trfAmt = Convert.ToInt32(txtFdAmount.Text);
+                var toAcc = Convert.ToInt32(txtFdToAccount.Text);
+                var toCurBal = Convert.ToInt32(txtFdToAccBalance.Text);
 
-            aDAO.fundsTransfer(frmAcc,frmCurBal,trfAmt,toAcc,toCurBal);
+                aDAO.fundsTransfer(frmAcc, frmCurBal, trfAmt, toAcc, toCurBal);
 
-            Transactions obj = new Transactions(frmAcc, trfAmt, txtFdFrmAccDescription.Text, DateTime.Now, txtUser.Text);
-            tDAO.logTransaction(obj);
+                Transactions obj = new Transactions(frmAcc, trfAmt, txtFdFrmAccDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(obj);
 
-            clearTransfer();
+                clearTransfer();
+
+            }
+            catch(Exception) { }
+            
 
         }
 

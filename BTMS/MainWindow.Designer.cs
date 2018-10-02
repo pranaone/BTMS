@@ -779,6 +779,7 @@
             // 
             // txtWithAccBalance
             // 
+            this.txtWithAccBalance.Enabled = false;
             this.txtWithAccBalance.Location = new System.Drawing.Point(499, 159);
             this.txtWithAccBalance.Name = "txtWithAccBalance";
             this.txtWithAccBalance.Size = new System.Drawing.Size(100, 20);
@@ -786,6 +787,7 @@
             // 
             // txtWithAccName
             // 
+            this.txtWithAccName.Enabled = false;
             this.txtWithAccName.Location = new System.Drawing.Point(497, 98);
             this.txtWithAccName.Name = "txtWithAccName";
             this.txtWithAccName.Size = new System.Drawing.Size(100, 20);
@@ -903,6 +905,7 @@
             // 
             // txtDepAccBalance
             // 
+            this.txtDepAccBalance.Enabled = false;
             this.txtDepAccBalance.Location = new System.Drawing.Point(504, 156);
             this.txtDepAccBalance.Name = "txtDepAccBalance";
             this.txtDepAccBalance.Size = new System.Drawing.Size(100, 20);
@@ -910,6 +913,7 @@
             // 
             // txtDepAccName
             // 
+            this.txtDepAccName.Enabled = false;
             this.txtDepAccName.Location = new System.Drawing.Point(502, 95);
             this.txtDepAccName.Name = "txtDepAccName";
             this.txtDepAccName.Size = new System.Drawing.Size(100, 20);
