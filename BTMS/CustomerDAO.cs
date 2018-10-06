@@ -36,7 +36,7 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Added!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Customer Record Successfully Saved!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             { MessageBox.Show(ex.ToString() , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -52,7 +52,7 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Customer Successfully Deleted!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Customer Record Successfully Deleted!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
@@ -76,7 +76,7 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Updated!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Customer Record Successfully Updated!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }

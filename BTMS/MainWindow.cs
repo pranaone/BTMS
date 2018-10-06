@@ -20,7 +20,9 @@ namespace BTMS
         EmployeeDAO eDAO = new EmployeeDAO();
         AccountDAO aDAO = new AccountDAO();
         TransactionDAO tDAO = new TransactionDAO();
-       
+        string accountSelect;
+
+
 
     public MainWindow()
         {
@@ -61,8 +63,8 @@ namespace BTMS
 
         private void btnLogout_Click(object sender, EventArgs e)
         {
+            this.Hide();
             new Login().Show();
-            this.Close();
         }
 
         private void btnExit_Click(object sender, EventArgs e)
@@ -177,7 +179,8 @@ namespace BTMS
                     cDAO.createCustomer(obj);
                     clearCustomer();
                 }
-                else { MessageBox.Show("Customer Record Already Exists!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }  
+                else { MessageBox.Show("Customer Record Already Exists!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                
             }
             catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!","Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
 
@@ -283,8 +286,12 @@ namespace BTMS
 
         private void btnOpenAccount_Click(object sender, EventArgs e)
         {
-            Account obj = new Account(txtAccCustName.Text, Convert.ToInt16(txtAccCustID.Text), DateTime.Now, "Open");
-            aDAO.openAccount(obj);
+            try
+            {
+                Account obj = new Account(txtAccCustName.Text, Convert.ToInt16(txtAccCustID.Text), DateTime.Now, "Open");
+                aDAO.openAccount(obj);
+            }
+            catch (Exception) { MessageBox.Show("Please Search Customer!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }          
         }
 
         private void btnAccClear_Click(object sender, EventArgs e)
@@ -297,7 +304,16 @@ namespace BTMS
 
         private void btnCloseAccount_Click(object sender, EventArgs e)
         {
-            aDAO.closeAccount(Convert.ToInt32(txtAccountNumber.Text));
+            try
+            {
+                if (accountSelect != null)
+                {
+                    aDAO.closeAccount(Convert.ToInt32(accountSelect));
+                }
+                else { MessageBox.Show("Please choose the account to be closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            }
+            catch (Exception) { MessageBox.Show("System Error!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
         }
 
         private void dgvAccount_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -305,7 +321,7 @@ namespace BTMS
             int index = e.RowIndex;
             DataGridViewRow selectedRow = dgvAccount.Rows[index];
 
-            txtAccountNumber.Text = selectedRow.Cells[0].Value.ToString();
+           accountSelect = selectedRow.Cells[0].Value.ToString();
         }
 
         private void txtDepAccNumber_TextChanged(object sender, EventArgs e)
@@ -343,10 +359,11 @@ namespace BTMS
                 var account = Convert.ToInt32(txtDepAccNumber.Text);
                 var currentBal = Convert.ToInt32(txtDepAccBalance.Text);
                 var depAmt = Convert.ToInt32(txtDepAmount.Text);
-                aDAO.updateAccBalDep(account, currentBal, depAmt);
+                AccountDAO objDp = new AccountDAO();
+                objDp.updateAccBalDep(account, currentBal, depAmt);
 
-                Transactions obj = new Transactions(account, depAmt, txtDepDescription.Text, DateTime.Now, txtUser.Text);
-                tDAO.logTransaction(obj);
+                Transactions objx = new Transactions(account, depAmt, txtDepDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(objx);
 
                 clearDeposit();
             }
@@ -366,8 +383,7 @@ namespace BTMS
         private void btnWithdrawCancel_Click(object sender, EventArgs e)
         {
             clearWithdrawal();
-           
-            GC.Collect();
+          
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
@@ -377,10 +393,11 @@ namespace BTMS
                 var account = Convert.ToInt32(txtWithAccNumber.Text);
                 var currentBal = Convert.ToInt32(txtWithAccBalance.Text);
                 var WithdrawalAmt = Convert.ToInt32(txtWithAmount.Text);
-                aDAO.updateAccBalWd(account, currentBal, WithdrawalAmt);
+                AccountDAO objWd = new AccountDAO();
+                objWd.updateAccBalWd(account, currentBal, WithdrawalAmt);
 
-                Transactions obj = new Transactions(account, WithdrawalAmt, txtWithDescription.Text, DateTime.Now, txtUser.Text);
-                tDAO.logTransaction(obj);
+                Transactions objx = new Transactions(account, WithdrawalAmt, txtWithDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(objx);
 
                 clearWithdrawal();
             }
@@ -424,10 +441,11 @@ namespace BTMS
                 var toAcc = Convert.ToInt32(txtFdToAccount.Text);
                 var toCurBal = Convert.ToInt32(txtFdToAccBalance.Text);
 
-                aDAO.fundsTransfer(frmAcc, frmCurBal, trfAmt, toAcc, toCurBal);
+                AccountDAO objFT = new AccountDAO();
+                objFT.fundsTransfer(frmAcc, frmCurBal, trfAmt, toAcc, toCurBal);
 
-                Transactions obj = new Transactions(frmAcc, trfAmt, txtFdFrmAccDescription.Text, DateTime.Now, txtUser.Text);
-                tDAO.logTransaction(obj);
+                Transactions objx = new Transactions(frmAcc, trfAmt, txtFdFrmAccDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(objx);
 
                 clearTransfer();
 
@@ -468,8 +486,18 @@ namespace BTMS
 
         private void btnPrintMandate_Click(object sender, EventArgs e)
         {
-            Session.Account = Convert.ToInt32(txtAccountNumber.Text);
-            new MandateViewer().Show();
+            try
+            {
+                if (accountSelect != null)
+                {
+                    Session.Account = Convert.ToInt32(accountSelect);
+                    new MandateViewer().Show();
+                }
+                else { MessageBox.Show("Please choose the account to be printed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+                
+            }
+            catch (Exception) { MessageBox.Show("System Error!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
 
         }
 

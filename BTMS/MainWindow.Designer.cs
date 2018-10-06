@@ -117,7 +117,6 @@
             this.label24 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.ManageAccount = new System.Windows.Forms.TabPage();
-            this.txtAccountNumber = new System.Windows.Forms.TextBox();
             this.btnAccClear = new System.Windows.Forms.Button();
             this.btnCloseAccount = new System.Windows.Forms.Button();
             this.dgvAccount = new System.Windows.Forms.DataGridView();
@@ -1009,7 +1008,6 @@
             // 
             // ManageAccount
             // 
-            this.ManageAccount.Controls.Add(this.txtAccountNumber);
             this.ManageAccount.Controls.Add(this.btnAccClear);
             this.ManageAccount.Controls.Add(this.btnCloseAccount);
             this.ManageAccount.Controls.Add(this.dgvAccount);
@@ -1030,14 +1028,6 @@
             this.ManageAccount.Text = "Manage Account";
             this.ManageAccount.UseVisualStyleBackColor = true;
             // 
-            // txtAccountNumber
-            // 
-            this.txtAccountNumber.Enabled = false;
-            this.txtAccountNumber.Location = new System.Drawing.Point(623, 192);
-            this.txtAccountNumber.Name = "txtAccountNumber";
-            this.txtAccountNumber.Size = new System.Drawing.Size(100, 20);
-            this.txtAccountNumber.TabIndex = 15;
-            // 
             // btnAccClear
             // 
             this.btnAccClear.Location = new System.Drawing.Point(315, 124);
@@ -1050,7 +1040,7 @@
             // 
             // btnCloseAccount
             // 
-            this.btnCloseAccount.Location = new System.Drawing.Point(622, 279);
+            this.btnCloseAccount.Location = new System.Drawing.Point(186, 322);
             this.btnCloseAccount.Name = "btnCloseAccount";
             this.btnCloseAccount.Size = new System.Drawing.Size(101, 23);
             this.btnCloseAccount.TabIndex = 13;
@@ -1071,7 +1061,7 @@
             this.dgvAccount.DataSource = this.accountBindingSource;
             this.dgvAccount.Location = new System.Drawing.Point(62, 179);
             this.dgvAccount.Name = "dgvAccount";
-            this.dgvAccount.Size = new System.Drawing.Size(545, 123);
+            this.dgvAccount.Size = new System.Drawing.Size(548, 123);
             this.dgvAccount.TabIndex = 12;
             this.dgvAccount.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAccount_CellContentClick);
             // 
@@ -1113,7 +1103,7 @@
             // 
             // btnPrintMandate
             // 
-            this.btnPrintMandate.Location = new System.Drawing.Point(621, 236);
+            this.btnPrintMandate.Location = new System.Drawing.Point(62, 322);
             this.btnPrintMandate.Name = "btnPrintMandate";
             this.btnPrintMandate.Size = new System.Drawing.Size(102, 23);
             this.btnPrintMandate.TabIndex = 11;
@@ -1291,6 +1281,7 @@
             // txtContact
             // 
             this.txtContact.Location = new System.Drawing.Point(126, 148);
+            this.txtContact.MaxLength = 10;
             this.txtContact.Name = "txtContact";
             this.txtContact.Size = new System.Drawing.Size(160, 20);
             this.txtContact.TabIndex = 15;
@@ -1658,7 +1649,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dateOpenedDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnAccClear;
-        private System.Windows.Forms.TextBox txtAccountNumber;
         private System.Windows.Forms.Label label44;
         private System.Windows.Forms.TextBox txtFdToAccBalance;
         private System.Windows.Forms.ComboBox cbxUserType;
