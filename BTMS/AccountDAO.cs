@@ -24,10 +24,10 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Account Successfully Opened!!");
+                MessageBox.Show("Account Successfully Opened!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception)
-            { MessageBox.Show("Error Occured - Unable to Open Account!!"); }
+            { MessageBox.Show("Unable to Open Account!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
 
@@ -45,15 +45,15 @@ namespace BTMS
                         SqlCommand cmd = new SqlCommand(sql, con);
                         con.Open();
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Account Successfully Closed!!");
+                        MessageBox.Show("Account Successfully Closed!!","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception)
-                    { MessageBox.Show("Error Occured - Unable to Close Account!!"); }
+                    { MessageBox.Show("Unable to Close Account!!","Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                     finally { con.Close(); };
                 }
-                else { MessageBox.Show("Account has a balance amount above the minimum!!"); }
+                else { MessageBox.Show("Account has a balance amount above the minimum!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
-            else { MessageBox.Show("Account is Already Closed!!"); }
+            else { MessageBox.Show("Account is Already Closed!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
 
         }
 
@@ -69,7 +69,7 @@ namespace BTMS
                 { bal = Convert.ToInt32(dreader[2]); }
                 dreader.Close();
             }
-            catch (Exception) { MessageBox.Show("Error Occured - Unable to Check Balance!!"); }
+            catch (Exception) { MessageBox.Show("Unable to Check Balance!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return bal;
         }
@@ -86,7 +86,7 @@ namespace BTMS
                 { name = dreader[1].ToString(); }
                 dreader.Close();
             }
-            catch (Exception) { MessageBox.Show("Error Occured - Unable to Find Account!!"); }
+            catch (Exception) { MessageBox.Show("Unable to Retrieve Account Name!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return name;
 
@@ -111,7 +111,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception) { MessageBox.Show("Unable to Find Account!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return found;
         }
@@ -136,7 +136,7 @@ namespace BTMS
                 else { close = false; }
                 dreader.Close();
             }
-            catch (Exception) { MessageBox.Show("Error Occured - Unable to Check Status of Account!!"); }
+            catch (Exception) { MessageBox.Show("Unable to Check Status of Account!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return close;
         }

@@ -11,7 +11,7 @@ namespace BTMS
     {
         public static SqlConnection Connect()
         {
-            return new SqlConnection(@"Data Source = HOME; Initial Catalog = CBC; Integrated Security = True"); //change this only if required
+            return new SqlConnection(@"Data Source = LOCALHOST\SQLEXPRESS; Initial Catalog = CBC; Integrated Security = True"); //change this only if required
         }
     }
 }

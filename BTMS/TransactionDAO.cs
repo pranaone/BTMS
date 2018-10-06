@@ -21,7 +21,7 @@ namespace BTMS
                 con.Open();
                 cmd1.ExecuteNonQuery();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
 
         }

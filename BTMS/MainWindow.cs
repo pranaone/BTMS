@@ -84,7 +84,7 @@ namespace BTMS
             }
             catch (Exception)
             {
-                MessageBox.Show("User Not Found!!");
+                MessageBox.Show("User Not Found!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clearUser();
             }
 
@@ -149,42 +149,37 @@ namespace BTMS
             }
             catch (Exception)
             {
-                MessageBox.Show("No Customer Record Found!!");
+                MessageBox.Show("No Customer Record Found!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 clearCustomer();
             }
         }
 
         private void btnCreateCustomer_Click(object sender, EventArgs e)
         {
-            //converting images in picturebox to bytes array to be stored in DB 
+            
             try
             {
-                MemoryStream ms1 = new MemoryStream();
-                pbxPhotograph.Image.Save(ms1, ImageFormat.Jpeg);
-                var Photo = ms1.ToArray();
-
-                MemoryStream ms2 = new MemoryStream();
-                pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
-                var Signature = ms2.ToArray();
-
-                Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
-                cDAO.createCustomer(obj);
-
-                /*cDAO.getCustomerNIC(txtID.Text);
-                //string custID = cDAO.customerNIC.ToString();
-                //if (custID == null)
-                //{
-                    
-                //}
-                else
+                CustomerDAO objx = new CustomerDAO();
+                objx.getCustomerNIC(txtID.Text);
+                string custID = objx.customerNIC;
+                if (txtID.Text != custID)
                 {
-                    MessageBox.Show("Customer Record Already Exists!!");
+                    MemoryStream ms1 = new MemoryStream();
+                    pbxPhotograph.Image.Save(ms1, ImageFormat.Jpeg);
+                    var Photo = ms1.ToArray();
+                    //converting images in picturebox to bytes array to be stored in DB 
+
+                    MemoryStream ms2 = new MemoryStream();
+                    pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
+                    var Signature = ms2.ToArray();
+
+                    Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
+                    cDAO.createCustomer(obj);
                     clearCustomer();
-                }*/
+                }
+                else { MessageBox.Show("Customer Record Already Exists!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }  
             }
-            catch (Exception ex) { MessageBox.Show("Please Upload Customer Photograph/Signature!!" + ex.ToString());}
-            
-            clearCustomer();
+            catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!","", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
 
         }
 
@@ -198,7 +193,7 @@ namespace BTMS
             pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
             var Signature = ms2.ToArray();
 
-            var CID = Convert.ToInt16(txtCustomerID.Text);
+            var CID = Convert.ToInt32(txtCustomerID.Text);
 
             Customer obj = new Customer(CID, txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
             cDAO.updateCustomer(obj);
@@ -242,12 +237,6 @@ namespace BTMS
             clearCustomer();
         }
 
-        private void MainWindow_Load(object sender, EventArgs e)
-        {
-            
-
-        }
-
         private void UserProfile_Enter(object sender, EventArgs e)
         {
             userProfile();
@@ -264,7 +253,7 @@ namespace BTMS
             }
             else
             {
-                MessageBox.Show("Entered Current Password Is Incorrect!!");
+                MessageBox.Show("Entered Current Password Is Incorrect!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txtNewPassword.Clear();
                 txtCurrentPassword.Clear();
             }
@@ -286,7 +275,7 @@ namespace BTMS
             }
             catch (Exception)
             {
-                MessageBox.Show("No Customer Found!!");
+                MessageBox.Show("No Customer Found!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 txtAccID.Clear();
             }
     

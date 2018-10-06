@@ -44,9 +44,9 @@ namespace BTMS
                     this.Hide();
                     new MainWindow().Show();
                 }
-                else { MessageBox.Show("Undefined User!!"); }
+                else { MessageBox.Show("Undefined User!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Invalid Username or Password!!"); }
+            else { MessageBox.Show("Invalid Username or Password!!","Error",MessageBoxButtons.OK,MessageBoxIcon.Warning); }
 
             con.Close();
         }

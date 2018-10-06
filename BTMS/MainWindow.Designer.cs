@@ -1330,7 +1330,7 @@
             // 
             this.txtDOB.Location = new System.Drawing.Point(126, 278);
             this.txtDOB.Name = "txtDOB";
-            this.txtDOB.Size = new System.Drawing.Size(200, 20);
+            this.txtDOB.Size = new System.Drawing.Size(160, 20);
             this.txtDOB.TabIndex = 18;
             // 
             // btnCustomerSearch
@@ -1493,7 +1493,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CBC Bank Transaction Management System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainWindow_FormClosing);
-            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ManageUser.ResumeLayout(false);
             this.ManageUser.PerformLayout();
             this.UserProfile.ResumeLayout(false);

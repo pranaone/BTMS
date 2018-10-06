@@ -36,10 +36,10 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Added!!");
+                MessageBox.Show("Customer Successfully Added!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
-            { MessageBox.Show(ex.ToString()); }
+            { MessageBox.Show(ex.ToString() , "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
 
@@ -52,10 +52,10 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Customer Successfully Deleted!!");
+                MessageBox.Show("Customer Successfully Deleted!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
-            { MessageBox.Show(ex.Message); }
+            { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
         public void updateCustomer(Customer obj) // update customer function
@@ -76,10 +76,10 @@ namespace BTMS
                 cmd.Parameters.Add("@signature", SqlDbType.Image).Value = obj.Signature;
                 con.Open();
                 cmd.ExecuteScalar();
-                MessageBox.Show("Customer Successfully Updated!!");
+                MessageBox.Show("Customer Successfully Updated!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
-            { MessageBox.Show(ex.Message); }
+            { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
         public string getCustomerNIC(string nic)
@@ -96,7 +96,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
 
             return customerNIC;
@@ -127,7 +127,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return cust;
         }

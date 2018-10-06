@@ -21,10 +21,10 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("User Successfully Added!!");
+                MessageBox.Show("User Successfully Added!!","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
-            catch (Exception ex)
-            { MessageBox.Show("User Already Exist!!"); }
+            catch (Exception)
+            { MessageBox.Show("User Already Exist!!","Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             finally { con.Close(); };
         }
 
