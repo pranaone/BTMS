@@ -153,15 +153,15 @@ namespace BTMS
                         SqlCommand cmd = new SqlCommand(sql, con);
                         con.Open();
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Deposit Successfull!!");
+                        MessageBox.Show("Deposit Successfull!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     catch (Exception)
-                    { MessageBox.Show("Error Occured - Deposit Failed!!"); }
+                    { MessageBox.Show("Deposit Failed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                     finally { con.Close(); };
                 }
-                else { MessageBox.Show("Unable to Deposit - Account is Closed!!"); }
+                else { MessageBox.Show("Account is Closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Unable to Deposit - Invalid Account Number!!"); }
+            else { MessageBox.Show("Invalid Account Number!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
 
         }
@@ -181,17 +181,17 @@ namespace BTMS
                             SqlCommand cmd = new SqlCommand(sql, con);
                             con.Open();
                             cmd.ExecuteNonQuery();
-                            MessageBox.Show("Withdrawal Successfull!!");
+                            MessageBox.Show("Withdrawal Successfull!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         }
                         catch (Exception)
-                        { MessageBox.Show("Error Occured - Withdrawal Failed!!"); }
+                        { MessageBox.Show("Withdrawal Failed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                         finally { con.Close(); };
                     }
-                    else { MessageBox.Show("Withdrawal Amount Exceeds Available Account Balance!!"); }
+                    else { MessageBox.Show("Withdrawal Amount Exceeds Available Account Balance!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
                 }
-                else { MessageBox.Show("Unable to Withdraw - Account is Closed!!"); }
+                else { MessageBox.Show("Account is Closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Unable to Withdraw - Invalid Account Number!!"); }
+            else { MessageBox.Show("Invalid Account Number!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
 
 
@@ -218,7 +218,7 @@ namespace BTMS
                                     cmd.ExecuteNonQuery();
                                 }
                                 catch (Exception)
-                                { MessageBox.Show("Error Occured - Transfer Failed!!"); }
+                                { MessageBox.Show("Transfer Failed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                                 finally { con.Close(); };
 
                                 int newToBal = toCurBal + trfAmt;
@@ -228,23 +228,23 @@ namespace BTMS
                                     SqlCommand cmd = new SqlCommand(sql, con);
                                     con.Open();
                                     cmd.ExecuteNonQuery();
-                                    MessageBox.Show("Funds Transfer Successfull!!");
+                                    MessageBox.Show("Funds Transfer Successfull!!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                 }
                                 catch (Exception)
-                                { MessageBox.Show("Error Occured - Transfer Failed!!"); }
+                                { MessageBox.Show("Transfer Failed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                                 finally { con.Close(); };
 
                             }
-                            else { MessageBox.Show("Transfer Amount Exceeds Available Account Balance!!"); }
+                            else { MessageBox.Show("Transfer Amount Exceeds Available Account Balance!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
 
                         }
-                        else { MessageBox.Show("Unable to Transfer - From Account is Closed!!"); }
+                        else { MessageBox.Show("Unable to Transfer - From Account is Closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                     }
-                    else { MessageBox.Show("Unable to Transfer - Invalid From Account Number!!"); }
+                    else { MessageBox.Show("Unable to Transfer - Invalid From Account Number!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
                 }
-                else { MessageBox.Show("Unable to Transfer - To Account is Closed!!"); }
+                else { MessageBox.Show("Unable to Transfer - To Account is Closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             }
-            else { MessageBox.Show("Unable to Transfer - Invalid To Account Number!!"); }
+            else { MessageBox.Show("Unable to Transfer - Invalid To Account Number!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
         }
             

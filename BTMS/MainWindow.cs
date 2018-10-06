@@ -177,9 +177,9 @@ namespace BTMS
                     cDAO.createCustomer(obj);
                     clearCustomer();
                 }
-                else { MessageBox.Show("Customer Record Already Exists!!", "", MessageBoxButtons.OK, MessageBoxIcon.Warning); }  
+                else { MessageBox.Show("Customer Record Already Exists!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }  
             }
-            catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!","", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
+            catch (Exception) { MessageBox.Show("Please Upload Customer Photograph/Signature!!","Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);}
 
         }
 
@@ -338,15 +338,20 @@ namespace BTMS
 
         private void btnDeposit_Click(object sender, EventArgs e)
         {
-            var account = Convert.ToInt32(txtDepAccNumber.Text);
-            var currentBal = Convert.ToInt32(txtDepAccBalance.Text);
-            var depAmt = Convert.ToInt32(txtDepAmount.Text);
-            aDAO.updateAccBalDep(account, currentBal, depAmt);
+            try
+            {
+                var account = Convert.ToInt32(txtDepAccNumber.Text);
+                var currentBal = Convert.ToInt32(txtDepAccBalance.Text);
+                var depAmt = Convert.ToInt32(txtDepAmount.Text);
+                aDAO.updateAccBalDep(account, currentBal, depAmt);
 
-            Transactions obj = new Transactions(account,depAmt,txtDepDescription.Text,DateTime.Now,txtUser.Text);
-            tDAO.logTransaction(obj);
+                Transactions obj = new Transactions(account, depAmt, txtDepDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(obj);
 
-            clearDeposit();
+                clearDeposit();
+            }
+            catch (Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            
 
         }
 
@@ -367,15 +372,20 @@ namespace BTMS
 
         private void btnWithdraw_Click(object sender, EventArgs e)
         {
-            var account = Convert.ToInt32(txtWithAccNumber.Text);
-            var currentBal = Convert.ToInt32(txtWithAccBalance.Text);
-            var WithdrawalAmt = Convert.ToInt32(txtWithAmount.Text);
-            aDAO.updateAccBalWd(account, currentBal, WithdrawalAmt);
+            try
+            {
+                var account = Convert.ToInt32(txtWithAccNumber.Text);
+                var currentBal = Convert.ToInt32(txtWithAccBalance.Text);
+                var WithdrawalAmt = Convert.ToInt32(txtWithAmount.Text);
+                aDAO.updateAccBalWd(account, currentBal, WithdrawalAmt);
 
-            Transactions obj = new Transactions(account, WithdrawalAmt, txtWithDescription.Text, DateTime.Now, txtUser.Text);
-            tDAO.logTransaction(obj);
+                Transactions obj = new Transactions(account, WithdrawalAmt, txtWithDescription.Text, DateTime.Now, txtUser.Text);
+                tDAO.logTransaction(obj);
 
-            clearWithdrawal();
+                clearWithdrawal();
+            }
+            catch (Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
+            
         }
 
         private void txtWithAccNumber_TextChanged(object sender, EventArgs e)
@@ -422,7 +432,7 @@ namespace BTMS
                 clearTransfer();
 
             }
-            catch(Exception) { }
+            catch(Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             
 
         }

@@ -36,7 +36,7 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("User Successfully Deleted!!");
+                MessageBox.Show("User Successfully Deleted!!","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
@@ -51,7 +51,7 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("User Successfully Updated!!");
+                MessageBox.Show("User Successfully Updated!!","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             { MessageBox.Show(ex.Message); }
@@ -79,7 +79,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception) { MessageBox.Show("User not Found!!"); }
+            catch (Exception) { MessageBox.Show("User not Found!!","Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             finally { con.Close(); }
             return emp;
         }
@@ -102,7 +102,7 @@ namespace BTMS
                 }
                 dreader.Close();
             }
-            catch (Exception ex) { MessageBox.Show(ex.ToString());}
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return passCheck;
         }
@@ -114,10 +114,10 @@ namespace BTMS
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Password Successfully Changed!!");
+                MessageBox.Show("Password Successfully Changed!!","Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
-            { MessageBox.Show(ex.Message); }
+            { MessageBox.Show(ex.Message,"Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
 
