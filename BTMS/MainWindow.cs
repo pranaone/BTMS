@@ -16,13 +16,8 @@ namespace BTMS
     public partial class MainWindow : Form
     {
         SqlConnection con = DBConnect.Connect();
-        CustomerDAO cDAO = new CustomerDAO();
-        EmployeeDAO eDAO = new EmployeeDAO();
-        AccountDAO aDAO = new AccountDAO();
         TransactionDAO tDAO = new TransactionDAO();
         string accountSelect;
-
-
 
     public MainWindow()
         {
@@ -34,9 +29,10 @@ namespace BTMS
         }
         private void userProfile()
         {
-            eDAO.searchUser(txtUser.Text);
-            txtUserEmpName.Text = eDAO.emp.Name;
-            txtUserEmpEmail.Text = eDAO.emp.Email;
+            EmployeeDAO objUP = new EmployeeDAO();
+            objUP.searchUser(txtUser.Text);
+            txtUserEmpName.Text = objUP.emp.Name;
+            txtUserEmpEmail.Text = objUP.emp.Email;
         }
         private void clearUser()
         {
@@ -94,25 +90,42 @@ namespace BTMS
 
         private void btnCreateEmp_Click(object sender, EventArgs e)
         {
-            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
-            txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
-            eDAO.createUser(obj);
-            clearUser();
+            try
+            {
+                Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
+                txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
+                EmployeeDAO objCE = new EmployeeDAO();
+                objCE.createUser(obj);
+                clearUser();
+            }
+            catch (Exception) { MessageBox.Show("Please enter employee details!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
         }
 
         private void btnUpdateEmp_Click(object sender, EventArgs e)
         {
-            Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
-            txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
-            eDAO.updateUser(obj);
-            clearUser();
+            try
+            {
+                Employee obj = new Employee(txtEmpID.Text, txtEmpName.Text, cbxUserType.Text,
+                txtEmpEmail.Text, txtEmpUsername.Text, txtEmpPassword.Text);
+                EmployeeDAO objUE = new EmployeeDAO();
+                objUE.updateUser(obj);
+                clearUser();
+            }
+            catch(Exception) { MessageBox.Show("Nothing to Update!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
         }
 
         private void btnDeleteEmp_Click(object sender, EventArgs e)
         {
-            eDAO.deleteUser(txtEmpID.Text);
-            clearUser();
-
+            try
+            {
+                EmployeeDAO objDE = new EmployeeDAO();
+                objDE.deleteUser(txtEmpID.Text);
+                clearUser();
+            }
+            catch(Exception) { MessageBox.Show("Nothing to delete!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
         }
 
         private void txtEmpID_TextChanged(object sender, EventArgs e)
@@ -176,7 +189,8 @@ namespace BTMS
                     var Signature = ms2.ToArray();
 
                     Customer obj = new Customer(txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
-                    cDAO.createCustomer(obj);
+                    CustomerDAO objCC = new CustomerDAO();
+                    objCC.createCustomer(obj);
                     clearCustomer();
                 }
                 else { MessageBox.Show("Customer Record Already Exists!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
@@ -188,26 +202,39 @@ namespace BTMS
 
         private void btnUpdateCustomer_Click(object sender, EventArgs e)
         {
-            MemoryStream ms1 = new MemoryStream();
-            pbxPhotograph.Image.Save(ms1, ImageFormat.Jpeg);
-            var Photo = ms1.ToArray();
+            try
+            {
+                MemoryStream ms1 = new MemoryStream();
+                pbxPhotograph.Image.Save(ms1, ImageFormat.Jpeg);
+                var Photo = ms1.ToArray();
 
-            MemoryStream ms2 = new MemoryStream();
-            pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
-            var Signature = ms2.ToArray();
+                MemoryStream ms2 = new MemoryStream();
+                pbxSignature.Image.Save(ms2, ImageFormat.Jpeg);
+                var Signature = ms2.ToArray();
 
-            var CID = Convert.ToInt32(txtCustomerID.Text);
+                var CID = Convert.ToInt32(txtCustomerID.Text);
 
-            Customer obj = new Customer(CID, txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
-            cDAO.updateCustomer(obj);
-            clearCustomer();
+                Customer obj = new Customer(CID, txtID.Text, txtFullName.Text, txtAddress.Text, txtContact.Text, txtEmail.Text, txtOccupation.Text, txtDOB.Value, Photo, Signature);
+                CustomerDAO objUC = new CustomerDAO();
+                objUC.updateCustomer(obj);
+                clearCustomer();
+
+            }
+            catch (Exception ex) { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
 
         }
 
         private void btnDeleteCustomer_Click(object sender, EventArgs e)
         {
-            cDAO.deleteCustomer(txtCustomerID.Text);
-            clearCustomer();
+            try
+            {
+                CustomerDAO objDC = new CustomerDAO();
+                objDC.deleteCustomer(txtCustomerID.Text);
+                clearCustomer();
+            }
+            catch(Exception) { MessageBox.Show("Nothing to Delete!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
+            
 
         }
 
@@ -247,10 +274,11 @@ namespace BTMS
 
         private void btnChangePassword_Click(object sender, EventArgs e)
         {
-            eDAO.validatePassword(txtUser.Text, txtCurrentPassword.Text);
-            if (eDAO.passCheck == true)
+            EmployeeDAO objCP = new EmployeeDAO();
+            objCP.validatePassword(txtUser.Text, txtCurrentPassword.Text);
+            if (objCP.passCheck == true)
             {
-                eDAO.changePassword(txtUser.Text,txtNewPassword.Text);
+                objCP.changePassword(txtUser.Text,txtNewPassword.Text);
                 txtNewPassword.Clear();
                 txtCurrentPassword.Clear();
             }
@@ -289,7 +317,8 @@ namespace BTMS
             try
             {
                 Account obj = new Account(txtAccCustName.Text, Convert.ToInt16(txtAccCustID.Text), DateTime.Now, "Open");
-                aDAO.openAccount(obj);
+                AccountDAO objAO = new AccountDAO();
+                objAO.openAccount(obj);
             }
             catch (Exception) { MessageBox.Show("Please Search Customer!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }          
         }
@@ -308,7 +337,8 @@ namespace BTMS
             {
                 if (accountSelect != null)
                 {
-                    aDAO.closeAccount(Convert.ToInt32(accountSelect));
+                    AccountDAO objAC = new AccountDAO();
+                    objAC.closeAccount(Convert.ToInt32(accountSelect));
                 }
                 else { MessageBox.Show("Please choose the account to be closed!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
             }
@@ -335,8 +365,6 @@ namespace BTMS
             catch (Exception) { }
          
         }
-
-    
 
         private void clearDeposit()
         {
@@ -368,8 +396,6 @@ namespace BTMS
                 clearDeposit();
             }
             catch (Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            
-
         }
 
         private void clearWithdrawal()
@@ -383,7 +409,6 @@ namespace BTMS
         private void btnWithdrawCancel_Click(object sender, EventArgs e)
         {
             clearWithdrawal();
-          
         }
 
         private void btnWithdraw_Click(object sender, EventArgs e)
@@ -401,8 +426,7 @@ namespace BTMS
 
                 clearWithdrawal();
             }
-            catch (Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            
+            catch (Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }  
         }
 
         private void txtWithAccNumber_TextChanged(object sender, EventArgs e)
@@ -414,8 +438,6 @@ namespace BTMS
                 txtWithAccName.Text = obj.getAccountName(Convert.ToInt32(txtWithAccNumber.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
-            
-
         }
         private void clearTransfer()
         {
@@ -451,8 +473,6 @@ namespace BTMS
 
             }
             catch(Exception) { MessageBox.Show("Please complete all fields!!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning); }
-            
-
         }
 
         private void btnFdCancel_Click(object sender, EventArgs e)
@@ -469,7 +489,6 @@ namespace BTMS
                 txtFdFrmAccName.Text = obj1.getAccountName(Convert.ToInt32(txtFdFrmAccount.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
-
         }
 
         private void txtFdToAccount_TextChanged(object sender, EventArgs e)
@@ -481,7 +500,6 @@ namespace BTMS
                 txtFdToAccName.Text = obj2.getAccountName(Convert.ToInt32(txtFdToAccount.Text));
             }
             catch (Exception) { /* to suppress invalid input string error */}
-
         }
 
         private void btnPrintMandate_Click(object sender, EventArgs e)
@@ -497,8 +515,6 @@ namespace BTMS
                 
             }
             catch (Exception) { MessageBox.Show("System Error!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
-            
-
         }
 
         private void tabPage6_Click(object sender, EventArgs e)
@@ -516,8 +532,6 @@ namespace BTMS
             // completely stops the thread after exiting the application
             // prevents application running in the background even after exiting 
         }
-
-       
     }
 }
 
