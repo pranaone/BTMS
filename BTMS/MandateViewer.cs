@@ -35,7 +35,7 @@ namespace BTMS
                 obj.Database.Tables["customerAccount"].SetDataSource(ds.Tables[0]);
                 crvViewer.ReportSource = obj;
             }
-            catch (Exception) { MessageBox.Show("Error Occured!!"); }
+            catch (Exception) { MessageBox.Show("Error Occured!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
         }
     }

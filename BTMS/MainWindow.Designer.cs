@@ -1149,6 +1149,7 @@
             // 
             // txtAccID
             // 
+            this.txtAccID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtAccID.Location = new System.Drawing.Point(186, 37);
             this.txtAccID.Name = "txtAccID";
             this.txtAccID.Size = new System.Drawing.Size(113, 20);
@@ -1303,6 +1304,7 @@
             // txtID
             // 
             this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtID.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             this.txtID.Location = new System.Drawing.Point(126, 29);
             this.txtID.Name = "txtID";
             this.txtID.Size = new System.Drawing.Size(160, 20);
