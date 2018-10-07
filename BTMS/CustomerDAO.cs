@@ -44,11 +44,11 @@ namespace BTMS
         }
 
 
-        public void deleteCustomer(string cid) // delete customer function
+        public void deleteCustomer(string nic) // delete customer function
         {
             try
             {
-                string sql = "delete from Customer where CID = '" + cid + "'";
+                string sql = "delete from Customer where NIC = '" + nic + "'";
                 SqlCommand cmd = new SqlCommand(sql, con);
                 con.Open();
                 cmd.ExecuteNonQuery();
