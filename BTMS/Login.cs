@@ -34,13 +34,13 @@ namespace BTMS
                 user = dt.Rows[0][2].ToString().Trim();
                 if (user == "Admin")
                 {
-                    Session.UserType = "Admin";
+                    Session.Usertype = "Admin";
                     this.Hide();
                     new MainWindow().Show(); 
                 }
                 else if (user == "Teller")
                 {
-                    Session.UserType = "Teller";
+                    Session.Usertype = "Teller";
                     this.Hide();
                     new MainWindow().Show();
                 }

@@ -11,7 +11,7 @@ namespace BTMS
         public static string Username;
         // this variable stores the username from login Form & can be retrieved from other Forms
 
-        public static string UserType; 
+        public static string Usertype; 
         // this variable stores the usertype from login Form & can be retrieved from other Forms
 
         public static int Account;

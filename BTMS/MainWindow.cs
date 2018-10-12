@@ -23,8 +23,19 @@ namespace BTMS
         {
             InitializeComponent();
             txtUser.Text = Session.Username;
-            if (Session.UserType != "Admin")
-            {Tabs.TabPages.Remove(ManageUser);}
+            if (Session.Usertype == "Admin")
+            {
+                Tabs.TabPages.Remove(ManageCustomer);
+                Tabs.TabPages.Remove(ManageAccount);
+                Tabs.TabPages.Remove(Deposit);
+                Tabs.TabPages.Remove(Withdrawal);
+                Tabs.TabPages.Remove(FundTransfer);
+                Tabs.TabPages.Remove(TransactionHistory);
+            }
+            else
+            {
+                Tabs.TabPages.Remove(ManageUser);
+            }
        
         }
         private void userProfile()
@@ -388,7 +399,7 @@ namespace BTMS
                 var currentBal = Convert.ToInt32(txtDepAccBalance.Text);
                 var depAmt = Convert.ToInt32(txtDepAmount.Text);
                 AccountDAO objDp = new AccountDAO();
-                objDp.updateAccBalDep(account, currentBal, depAmt);
+                objDp.deposit(account, currentBal, depAmt);
 
                 Transactions objx = new Transactions(account, depAmt, txtDepDescription.Text, DateTime.Now, txtUser.Text);
                 tDAO.logTransaction(objx);
@@ -419,7 +430,7 @@ namespace BTMS
                 var currentBal = Convert.ToInt32(txtWithAccBalance.Text);
                 var WithdrawalAmt = Convert.ToInt32(txtWithAmount.Text);
                 AccountDAO objWd = new AccountDAO();
-                objWd.updateAccBalWd(account, currentBal, WithdrawalAmt);
+                objWd.withdrawal(account, currentBal, WithdrawalAmt);
 
                 Transactions objx = new Transactions(account, WithdrawalAmt, txtWithDescription.Text, DateTime.Now, txtUser.Text);
                 tDAO.logTransaction(objx);

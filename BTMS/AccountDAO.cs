@@ -54,7 +54,6 @@ namespace BTMS
                 else { MessageBox.Show("Account has a balance amount above the minimum!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
             }
             else { MessageBox.Show("Account is Already Closed!!", "", MessageBoxButtons.OK, MessageBoxIcon.Information); }
-
         }
 
         public int checkBalance(int account)
@@ -89,7 +88,6 @@ namespace BTMS
             catch (Exception) { MessageBox.Show("Unable to Retrieve Account Name!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); }
             return name;
-
         }
 
         public bool checkAccount(int account)
@@ -116,7 +114,6 @@ namespace BTMS
             return found;
         }
 
-
         public bool isClose(int account)
         {
             try
@@ -140,7 +137,8 @@ namespace BTMS
             finally { con.Close(); }
             return close;
         }
-        public void updateAccBalDep(int account, int currentBal, int depositAmt)
+
+        public void deposit(int account, int currentBal, int depositAmt)
         {
             if (checkAccount(account) == true)
             {
@@ -163,10 +161,9 @@ namespace BTMS
             }
             else { MessageBox.Show("Invalid Account Number!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
 
-
         }
 
-        public void updateAccBalWd(int account, int currentBal, int withdrawalAmt)
+        public void withdrawal(int account, int currentBal, int withdrawalAmt)
         {
             if (checkAccount(account) == true)
             {
@@ -196,6 +193,7 @@ namespace BTMS
 
 
         }
+
         public void fundsTransfer(int frmAccount, int frmCurBal, int trfAmt, int toAccount, int toCurBal)
         {
             if (checkAccount(toAccount) == true)

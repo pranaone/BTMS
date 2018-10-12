@@ -43,7 +43,6 @@ namespace BTMS
             finally { con.Close(); };
         }
 
-
         public void deleteCustomer(string nic) // delete customer function
         {
             try
@@ -58,6 +57,7 @@ namespace BTMS
             { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
+
         public void updateCustomer(Customer obj) // update customer function
         {
             try
@@ -82,6 +82,7 @@ namespace BTMS
             { MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error); }
             finally { con.Close(); };
         }
+
         public string getCustomerNIC(string nic)
         {
             try
@@ -102,6 +103,7 @@ namespace BTMS
             return customerNIC;
 
         }
+
         public Customer searchCustomer(string nic) // search customer function
         {
             try

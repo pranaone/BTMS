@@ -13,6 +13,7 @@ namespace BTMS
         public bool passCheck;
         public Employee emp;
         SqlConnection con = DBConnect.Connect();
+
         public void createUser(Employee obj) // add employee function
         {
             try
@@ -106,6 +107,7 @@ namespace BTMS
             finally { con.Close(); }
             return passCheck;
         }
+
         public void changePassword(string eid, string pass)
         {
             try
