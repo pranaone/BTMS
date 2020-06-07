@@ -1,4 +1,4 @@
-# BTMS
+# Bank Transaction Management System
 This C#.NET program was written as a final project for my HND Computing & Systems Development Program
 
 Developed a C#.NET desktop application as a prototype to demonstrate the possibility of integrating two separate banking systems such as account opening and transaction processing into a single application.
